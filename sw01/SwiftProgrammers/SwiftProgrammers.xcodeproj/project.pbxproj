@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD85608B28E0FCBC00613401 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85608A28E0FCBC00613401 /* Person.swift */; };
 		DDD4A9A828E0B014001CD5BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD4A9A728E0B014001CD5BE /* AppDelegate.swift */; };
 		DDD4A9AA28E0B014001CD5BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD4A9A928E0B014001CD5BE /* SceneDelegate.swift */; };
 		DDD4A9AC28E0B014001CD5BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD4A9AB28E0B014001CD5BE /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD85608A28E0FCBC00613401 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		DDD4A9A428E0B014001CD5BE /* SwiftProgrammers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftProgrammers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD4A9A728E0B014001CD5BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDD4A9A928E0B014001CD5BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			children = (
 				DDD4A9A728E0B014001CD5BE /* AppDelegate.swift */,
 				DDD4A9BB28E0B78D001CD5BE /* DataProvider.swift */,
+				DD85608A28E0FCBC00613401 /* Person.swift */,
 				DDD4A9A928E0B014001CD5BE /* SceneDelegate.swift */,
 				DDD4A9AB28E0B014001CD5BE /* ViewController.swift */,
 				DDD4A9AD28E0B014001CD5BE /* Main.storyboard */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD85608B28E0FCBC00613401 /* Person.swift in Sources */,
 				DDD4A9AC28E0B014001CD5BE /* ViewController.swift in Sources */,
 				DDD4A9A828E0B014001CD5BE /* AppDelegate.swift in Sources */,
 				DDD4A9BC28E0B78D001CD5BE /* DataProvider.swift in Sources */,

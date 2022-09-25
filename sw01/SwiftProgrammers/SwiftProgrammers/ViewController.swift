@@ -8,25 +8,90 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    var currentYPos: Int = 120
+    let dataprovider = DataProvider()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemPink
+        view.backgroundColor = .black
         
+            
+        let title = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 30))
+        title.center = CGPoint(x: 180, y: 100)
+        title.textAlignment = .center
+        title.textColor = .systemOrange
+        title.font = title.font.withSize(25)
         
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-           label.center = CGPoint(x: 180, y: 100)
-           label.textAlignment = .center
-           label.text = "Swift Programmers"
-
-           self.view.addSubview(label)
+        title.text = "Swift Programmers"
+        self.view.addSubview(title)
+      
+       // draw_surnames_simple()
+   
+        draw_persons()
+        
     }
     
-    func test() {
-     var p = DataProvider()
-        
+    
+
+
+    // 4. Label pro Teilnehmer zeichnen
+    func draw_surnames_simple() {
+        var compute_pos = { (num: Int) -> (Int) in
+            if (num % 2 == 0) {
+                return 0
+            }
+            return 1
+        }
+        for (index, surname) in dataprovider.memberSurnames.enumerated() {
+            
+            addLabel(name: surname, position: compute_pos(index) )
+            currentYPos += 20
+        }
     }
+    
+    // 6. memberPersons zeichnen
+    func draw_persons() {
+        for (index, person) in dataprovider.memberPersons.enumerated() {
+            
+            addLabel(person: person, position: index)
+            currentYPos += 20
+        }
+    }
+    
 
 
+    func addLabel(name: String, position: Int) {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 22))
+        switch position {
+            case 0:
+                label.center = CGPoint(x: 70, y: currentYPos)
+                label.textColor = .systemRed
+            case 1:
+                label.center = CGPoint(x: 200, y: currentYPos)
+                label.textColor = .systemOrange
+            case 2:
+                label.center = CGPoint(x: 300, y: currentYPos)
+                label.textColor = .systemGreen
+            default:
+                label.center = CGPoint(x: 70, y: currentYPos)
+        }
+        
+        label.textAlignment = .center
+        label.text = name
+        self.view.addSubview(label)
+    }
+    
+
+    
+    
+    func addLabel(person: Person, position: Int) {
+        
+        addLabel(name: person.firstName, position: 0 )
+        addLabel(name: person.lastName, position: 1 )
+        addLabel(name: String(person.plz), position: 2 )
+
+        currentYPos += 20
+    }
 }
 
