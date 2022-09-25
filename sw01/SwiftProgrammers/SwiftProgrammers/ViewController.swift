@@ -10,34 +10,32 @@ import UIKit
 class ViewController: UIViewController {
     
     var currentYPos: Int = 120
+    var step: Int = 18
     let dataprovider = DataProvider()
     
+    let usePersonData: Bool = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
         
-            
-        let title = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 30))
-        title.center = CGPoint(x: 180, y: 100)
-        title.textAlignment = .center
-        title.textColor = .systemOrange
-        title.font = title.font.withSize(25)
+        setupAppTitle()
         
-        title.text = "Swift Programmers"
-        self.view.addSubview(title)
-      
-       // draw_surnames_simple()
-   
-        draw_persons()
+        if (usePersonData) {
+            draw_persons()
+            
+        } else {
+            draw_names_alternating()
+        }
+
         
     }
-    
-    
+
 
 
     // 4. Label pro Teilnehmer zeichnen
-    func draw_surnames_simple() {
-        var compute_pos = { (num: Int) -> (Int) in
+    func draw_names_alternating() {
+        let compute_pos = { (num: Int) -> (Int) in
             if (num % 2 == 0) {
                 return 0
             }
@@ -46,7 +44,7 @@ class ViewController: UIViewController {
         for (index, surname) in dataprovider.memberSurnames.enumerated() {
             
             addLabel(name: surname, position: compute_pos(index) )
-            currentYPos += 20
+            currentYPos += step
         }
     }
     
@@ -55,18 +53,18 @@ class ViewController: UIViewController {
         for (index, person) in dataprovider.memberPersons.enumerated() {
             
             addLabel(person: person, position: index)
-            currentYPos += 20
+            currentYPos += step
         }
     }
     
 
 
     func addLabel(name: String, position: Int) {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 22))
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 120, height: 22))
         switch position {
             case 0:
                 label.center = CGPoint(x: 70, y: currentYPos)
-                label.textColor = .systemRed
+                label.textColor = .systemGreen
             case 1:
                 label.center = CGPoint(x: 200, y: currentYPos)
                 label.textColor = .systemOrange
@@ -91,7 +89,21 @@ class ViewController: UIViewController {
         addLabel(name: person.lastName, position: 1 )
         addLabel(name: String(person.plz), position: 2 )
 
-        currentYPos += 20
+        currentYPos += step
     }
+    
+    
+    func setupAppTitle() {
+       let title = UILabel(frame: CGRect(x: 0, y: 100, width: 250, height: 30))
+       title.center = CGPoint(x: 180, y: 100)
+       title.textAlignment = .center
+       title.textColor = .systemYellow
+       
+       title.font = title.font.withSize(25)
+       
+       title.text = "Swift Programmers"
+       self.view.addSubview(title)
+   }
+   
 }
 
