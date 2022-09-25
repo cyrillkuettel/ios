@@ -11,9 +11,9 @@ class ViewController: UIViewController {
     
     var currentYPos: Int = 120
     var step: Int = 18
-    let dataprovider = DataProvider()
+    let dataprovider =  DataProvider.sharedInstance
     
-    let usePersonData: Bool = true
+    let usePersonData: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +21,8 @@ class ViewController: UIViewController {
         
         setupAppTitle()
         
-        if (usePersonData) {
+        if usePersonData {
             draw_persons()
-            
         } else {
             draw_names_alternating()
         }
@@ -31,19 +30,21 @@ class ViewController: UIViewController {
         
     }
 
-
-
     // 4. Label pro Teilnehmer zeichnen
     func draw_names_alternating() {
         let compute_pos = { (num: Int) -> (Int) in
-            if (num % 2 == 0) {
+            if num % 2 == 0 {
                 return 0
             }
-            return 1
+            return 2
+        }
+        
+        let compute_pos_2 =  { (num: Int) -> (Int) in
+            return num % 3
         }
         for (index, surname) in dataprovider.memberSurnames.enumerated() {
             
-            addLabel(name: surname, position: compute_pos(index) )
+            addLabel(name: surname, position: compute_pos_2(index) )
             currentYPos += step
         }
     }
@@ -70,7 +71,7 @@ class ViewController: UIViewController {
                 label.textColor = .systemOrange
             case 2:
                 label.center = CGPoint(x: 300, y: currentYPos)
-                label.textColor = .systemGreen
+                label.textColor = .systemMint
             default:
                 label.center = CGPoint(x: 70, y: currentYPos)
         }
