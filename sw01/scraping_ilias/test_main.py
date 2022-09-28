@@ -1,18 +1,6 @@
 from main import Scraper
 
 
-def test_reading_a_tags():
-
-    scraper = Scraper()
-    tags = scraper.get_relevant_divs()
-
-    print(type(tags))
-    print(len(tags))
-
-    assert len(tags) > 20
-    assert "a" in tags
-
-
 def test_get_names_as_list():
     myname = "Cyrill"
     scraper = Scraper()

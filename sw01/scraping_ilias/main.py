@@ -1,3 +1,4 @@
+from zipfile import ZipFile
 from bs4 import BeautifulSoup, ResultSet
 
 
@@ -6,8 +7,12 @@ class Scraper:
         pass
 
     def get_relevant_divs(self):
-        with open("index.html") as fp:
-            soup = BeautifulSoup(fp, "html.parser")
+        path_to_zip_file = "index.zip"
+        with ZipFile(path_to_zip_file, "r") as zip_ref:
+            zip_ref.extractall(".")
+
+        with open("index.html") as html_file:
+            soup = BeautifulSoup(html_file, "html.parser")
             return soup.findAll("div", {"class": ["caption", "card-title"]})
 
     def get_text_from_a(self, divs: ResultSet, index=0):
@@ -23,14 +28,15 @@ class Scraper:
     def surnames(self):
         divs = self.get_relevant_divs()
         return self.get_text_from_a(divs)
+
     def names(self):
         divs = self.get_relevant_divs()
         return self.get_text_from_a(divs, index=2)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     scraper = Scraper()
     surnames = scraper.surnames()
     names = scraper.names()
-    names_w = str(names).replace("'", "\"")
+    names_w = str(names).replace("'", '"')
     print(names_w)
