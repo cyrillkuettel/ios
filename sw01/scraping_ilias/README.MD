@@ -2,7 +2,14 @@
 
 Just some completely unnecessary python web scraping. 
 
-```python
-pip install bs4
+## Get Started
+### Requirements
+
+```bash
+python3 -m venv venv
+venv/bin/pip install beautifulsoup4
+```
+### Get Names
+```bash
 python3 main.py
 ```
