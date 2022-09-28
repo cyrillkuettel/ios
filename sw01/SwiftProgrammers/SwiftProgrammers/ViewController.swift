@@ -26,18 +26,12 @@ class ViewController: UIViewController {
         } else {
             draw_names_alternating()
         }
-
         
     }
 
     // 4. Label pro Teilnehmer zeichnen
     func draw_names_alternating() {
-        let compute_pos = { (num: Int) -> (Int) in
-            if num % 2 == 0 {
-                return 0
-            }
-            return 2
-        }
+
         
         let compute_pos_2 =  { (num: Int) -> (Int) in
             return num % 3
