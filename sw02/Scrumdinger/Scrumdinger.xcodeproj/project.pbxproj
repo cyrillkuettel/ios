@@ -104,6 +104,7 @@
 				DDB63EA528F33FE600AF553E /* Assets.xcassets */,
 				DDB63EA728F33FE600AF553E /* Preview Content */,
 				DDB63EC228F3521A00AF553E /* ErrorView.swift */,
+				DDB63EE428F36DBC00AF553E /* HistoryView.swift */,
 				DDB63EC428F3523C00AF553E /* CardView.swift */,
 				DDB63EC628F3526C00AF553E /* DetailedEditView.swift */,
 				DDB63EC828F352A700AF553E /* ThemePicker.swift */,
@@ -118,7 +119,6 @@
 				DDB63EDA28F3551C00AF553E /* ThemeView.swift */,
 				DDB63EDC28F3555C00AF553E /* TrailingIconLabelStyle.swift */,
 				DDB63EE028F36C8500AF553E /* ding.wav */,
-				DDB63EE428F36DBC00AF553E /* HistoryView.swift */,
 			);
 			path = Scrumdinger;
 			sourceTree = "<group>";
@@ -380,6 +380,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "“Audio is recorded to transcribe the meeting. Audio recordings are discarded after transcription.”";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "\"Recognize speech\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -409,6 +410,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "“Audio is recorded to transcribe the meeting. Audio recordings are discarded after transcription.”";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "\"Recognize speech\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
