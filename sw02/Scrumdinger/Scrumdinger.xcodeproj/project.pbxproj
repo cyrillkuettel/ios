@@ -32,6 +32,7 @@
 		DDB63EDB28F3551C00AF553E /* ThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB63EDA28F3551C00AF553E /* ThemeView.swift */; };
 		DDB63EDD28F3555C00AF553E /* TrailingIconLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB63EDC28F3555C00AF553E /* TrailingIconLabelStyle.swift */; };
 		DDB63EDF28F3643700AF553E /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB63EDE28F3643700AF553E /* SpeechRecognizer.swift */; };
+		DDB63EE128F36C8500AF553E /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = DDB63EE028F36C8500AF553E /* ding.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,8 @@
 		DDB63EDA28F3551C00AF553E /* ThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeView.swift; sourceTree = "<group>"; };
 		DDB63EDC28F3555C00AF553E /* TrailingIconLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailingIconLabelStyle.swift; sourceTree = "<group>"; };
 		DDB63EDE28F3643700AF553E /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		DDB63EE028F36C8500AF553E /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ding.wav; path = ../../../../Downloads/TranscribingSpeechToText/StartingProject/Scrumdinger/Resources/ding.wav; sourceTree = "<group>"; };
+		DDB63EE328F36C9700AF553E /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ding.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,7 @@
 		DDB63EA028F33FE400AF553E /* Scrumdinger */ = {
 			isa = PBXGroup;
 			children = (
+				DDB63EE228F36C8E00AF553E /* Resources */,
 				DDB63EAF28F3437600AF553E /* Models */,
 				DDB63EA128F33FE400AF553E /* ScrumdingerApp.swift */,
 				DDB63EA528F33FE600AF553E /* Assets.xcassets */,
@@ -111,6 +115,7 @@
 				DDB63ED828F354D800AF553E /* SpeakerARC.swift */,
 				DDB63EDA28F3551C00AF553E /* ThemeView.swift */,
 				DDB63EDC28F3555C00AF553E /* TrailingIconLabelStyle.swift */,
+				DDB63EE028F36C8500AF553E /* ding.wav */,
 			);
 			path = Scrumdinger;
 			sourceTree = "<group>";
@@ -136,6 +141,14 @@
 				DDB63EDE28F3643700AF553E /* SpeechRecognizer.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		DDB63EE228F36C8E00AF553E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DDB63EE328F36C9700AF553E /* ding.wav */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +209,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDB63EE128F36C8500AF553E /* ding.wav in Resources */,
 				DDB63EA928F33FE600AF553E /* Preview Assets.xcassets in Resources */,
 				DDB63EA628F33FE600AF553E /* Assets.xcassets in Resources */,
 			);
