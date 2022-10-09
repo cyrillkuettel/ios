@@ -31,6 +31,7 @@
 		DDB63ED928F354D800AF553E /* SpeakerARC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB63ED828F354D800AF553E /* SpeakerARC.swift */; };
 		DDB63EDB28F3551C00AF553E /* ThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB63EDA28F3551C00AF553E /* ThemeView.swift */; };
 		DDB63EDD28F3555C00AF553E /* TrailingIconLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB63EDC28F3555C00AF553E /* TrailingIconLabelStyle.swift */; };
+		DDB63EDF28F3643700AF553E /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB63EDE28F3643700AF553E /* SpeechRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		DDB63ED828F354D800AF553E /* SpeakerARC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerARC.swift; sourceTree = "<group>"; };
 		DDB63EDA28F3551C00AF553E /* ThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeView.swift; sourceTree = "<group>"; };
 		DDB63EDC28F3555C00AF553E /* TrailingIconLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailingIconLabelStyle.swift; sourceTree = "<group>"; };
+		DDB63EDE28F3643700AF553E /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				DDB63EBC28F3460500AF553E /* History.swift */,
 				DDB63EBE28F3467400AF553E /* ScrumStore.swift */,
 				DDB63EC028F3509F00AF553E /* ScrumTimer.swift */,
+				DDB63EDE28F3643700AF553E /* SpeechRecognizer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				DDB63EC328F3521A00AF553E /* ErrorView.swift in Sources */,
 				DDB63EA228F33FE400AF553E /* ScrumdingerApp.swift in Sources */,
 				DDB63EB728F345B100AF553E /* DailyScrum.swift in Sources */,
+				DDB63EDF28F3643700AF553E /* SpeechRecognizer.swift in Sources */,
 				DDB63EC928F352A700AF553E /* ThemePicker.swift in Sources */,
 				DDB63ED928F354D800AF553E /* SpeakerARC.swift in Sources */,
 				DDB63EC528F3523C00AF553E /* CardView.swift in Sources */,
@@ -357,6 +361,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Scrumdinger/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "“Audio is recorded to transcribe the meeting. Audio recordings are discarded after transcription.”";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -385,6 +390,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Scrumdinger/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "“Audio is recorded to transcribe the meeting. Audio recordings are discarded after transcription.”";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -3,6 +3,7 @@ import SwiftUI
 
 struct MeetingTimerView: View {
     let speakers: [ScrumTimer.Speaker]
+    let isRecording: Bool
     let theme: Theme
 
     private var currentSpeaker: String {
@@ -40,6 +41,5 @@ struct MeetingTimerView_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        MeetingTimerView(speakers: speakers, theme: .yellow)
-    }
+        MeetingTimerView(speakers: speakers, isRecording: true, theme: .yellow)    }
 }
