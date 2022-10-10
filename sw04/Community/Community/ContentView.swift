@@ -3,7 +3,7 @@ import SwiftUI
 
 struct ContentView: View {
     let community = Community()
-    
+    @State var shuffleCount: Int = 0
     
     var body: some View {
         
@@ -25,27 +25,26 @@ struct ContentView: View {
                 Text("Initial Total: 50000")
                 Text("10000 | 10000 | 10000 | 10000 | 10000")
                 Text("Last Total: 50000")
-                Text("0 Times shuffled")
+                Text("\(shuffleCount) times shuffled")
                 
             }
             .navigationBarTitle(Text("Shuffle 🔀"))
         }
     }
+
     
     private func shuffleFew() {
-        
-        for _ in 0..<10 {
+        for _ in 0..<50000 {
             if let lender = self.community.members.randomElement(){
                 if let borrower = self.community.members.randomElement() {
                     lender.lend(borrower: borrower)
                 } else {
                     print("random Element is nil wtf")
-                    
                 }
             } else {
                 print("random Element is nil wtf")
             }
-            
+            self.shuffleCount += 1
         }
     }
 }
@@ -57,3 +56,4 @@ struct ContentView_Previews: PreviewProvider {
         }
     }
 }
+
