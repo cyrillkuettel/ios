@@ -4,11 +4,13 @@ import SwiftUI
 struct ContentView: View {
     let community = Community()
     
+    
     var body: some View {
+        
         NavigationView {
             List {
                 Button(action: { self.shuffleFew() }) {
-                  Text("Shuffle Few")
+                    Text("Shuffle Few")
                 }
                 Button {
                     print("Schuffle Many")
@@ -31,10 +33,18 @@ struct ContentView: View {
     }
     
     private func shuffleFew() {
+        
         for _ in 0..<10 {
-            let lender = community.members.randomElement()
-            let borrower = community.members.randomElement()!
-            lender?.lend(borrower: borrower)
+            if let lender = self.community.members.randomElement(){
+                if let borrower = self.community.members.randomElement() {
+                    lender.lend(borrower: borrower)
+                } else {
+                    print("random Element is nil wtf")
+                    
+                }
+            } else {
+                print("random Element is nil wtf")
+            }
             
         }
     }
