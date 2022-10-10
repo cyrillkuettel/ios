@@ -2,14 +2,13 @@ import SwiftUI
 
 
 struct ContentView: View {
+    let community = Community()
     
     var body: some View {
         NavigationView {
             List {
-                Button {
-                    print("Schuffle Few")
-                } label: {
-                    Text("Schuffle Few")
+                Button(action: { self.shuffleFew() }) {
+                  Text("Shuffle Few")
                 }
                 Button {
                     print("Schuffle Many")
@@ -23,11 +22,20 @@ struct ContentView: View {
                 }
                 Text("Initial Total: 50000")
                 Text("10000 | 10000 | 10000 | 10000 | 10000")
-                Text("Letztes Total: 50000")
+                Text("Last Total: 50000")
                 Text("0 Times shuffled")
                 
             }
             .navigationBarTitle(Text("Shuffle 🔀"))
+        }
+    }
+    
+    private func shuffleFew() {
+        for _ in 0..<10 {
+            let lender = community.members.randomElement()
+            let borrower = community.members.randomElement()!
+            lender?.lend(borrower: borrower)
+            
         }
     }
 }

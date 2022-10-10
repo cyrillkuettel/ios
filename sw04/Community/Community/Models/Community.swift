@@ -2,18 +2,18 @@
 import Foundation
 
 class Community {
-    var members = [Member](repeatElement(Member(), count: 5))
-             
+    /* let members = [Member](repeatElement(Member(), count: 5)) */
+    var members = Array(repeating: Member(), count: 5)
+    
     /*
-    var memberPersons: Array<Member>
+    var members: Array<Member>
     
     init() {
-        self.memberPersons = Array<Member>()
-        
+         self.members = Array<Member>()
         for _ in 0..<5 {
-            self.memberPersons.append(Member())
+            self.members.append(Member())
         }
-     */
-    
-    
+    }
+     
+    */
 }
