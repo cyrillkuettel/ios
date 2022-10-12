@@ -2,8 +2,11 @@ import SwiftUI
 
 
 struct ContentView: View {
+    
     let community = Community()
     @State var shuffleCount: Int = 0
+    // writeonce here todo:
+     let Many = 1_000_000
     
     var body: some View {
         
@@ -12,29 +15,49 @@ struct ContentView: View {
                 Button(action: { self.shuffleFew() }) {
                     Text("Shuffle Few")
                 }
-                Button {
-                    print("Schuffle Many")
-                } label: {
-                    Text("Schuffle Many")
+                Button(action: { self.synchronouslyShuffleMany() })  {
+                    Text("Schuffle Many Synchronized")
                 }
-                Button {
-                    print("Shuffle Concurrent")
-                } label: {
+                Button(action: { self.shuffleConcurrent() })  {
                     Text("Shuffle Concurrent")
                 }
+                
+                Button("Shuffle Twice") {
+                    
+                    Task(priority: .high) {
+                        await self.shuffleConcurrentAsync()
+                    }
+                    Task(priority: .low) {
+                        await self.shuffleConcurrentAsync()
+                    }
+                }
+                Button(action: { self.concurrentPerform() })  {
+                    Text("DispatchQueue.concurrentPerform( () -> )")
+                }
+                
+                
                 Text("Initial Total: 50000")
                 Text("10000 | 10000 | 10000 | 10000 | 10000")
                 Text("Last Total: 50000")
                 Text("\(shuffleCount) times shuffled")
-                
             }
-            .navigationBarTitle(Text("Shuffle 🔀"))
+            .navigationBarTitle(Text("Shuffle"))
         }
+    }
+    
+    
+    
+    private func shuffleConcurrentAsync() async {
+    
+            for _ in 0...Many {
+                synchronouslyShuffleMany()
+            }
+        
     }
 
     
     private func shuffleFew() {
-        for _ in 0..<50000 {
+        for _ in 0..<10000 {
             if let lender = self.community.members.randomElement(){
                 if let borrower = self.community.members.randomElement() {
                     lender.lend(borrower: borrower)
@@ -47,6 +70,34 @@ struct ContentView: View {
             self.shuffleCount += 1
         }
     }
+   
+    private func synchronouslyShuffleMany() {
+        for _ in 0..<Many {
+            if let lender = self.community.members.randomElement(){
+                if let borrower = self.community.members.randomElement() {
+                    lender.lend(borrower: borrower)
+                }
+            }
+            self.shuffleCount += 1
+        }
+    }
+    
+    private func shuffleConcurrent() {
+        let thread = Thread {
+            for _ in 0...Many {
+                synchronouslyShuffleMany()
+            }
+        }
+    }
+    private func concurrentPerform() {
+        var counter = 0
+
+        DispatchQueue.concurrentPerform(iterations: 2) { _ in
+         counter += 1
+        }
+        print(counter)
+    }
+
 }
 
 struct ContentView_Previews: PreviewProvider {
