@@ -29,11 +29,10 @@ struct BasicView: View {
                 }
             }
             
-            let initialSum = community.members.map({$0.capital}).reduce(0, +)
             
-            Text("Initial Total: \(initialSum)")
+            Text("Initial Total: \(community.initialTotal)")
             Text("\(community.members[0].capital) | \(community.members[1].capital) | \(community.members[2].capital) | \(community.members[3].capital) | \(community.members[4].capital)")
-            Text("Last Total: \(community.totalSum)")
+            Text("Last Total: \(community.lastTotal)")
             Text("\(community.shuffleCount) times shuffled")
         }
         .navigationBarTitle(Text("Shuffle"))

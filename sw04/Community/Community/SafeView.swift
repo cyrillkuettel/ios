@@ -27,7 +27,7 @@ struct SafeView: View {
             
             Text("Initial Total: \(initialSum)")
             Text("\(community.members[0].capital) | \(community.members[1].capital) | \(community.members[2].capital) | \(community.members[3].capital) | \(community.members[4].capital)")
-            Text("Last Total: \(community.totalSum)")
+            Text("Last Total: \(community.lastTotal)")
             Text("\(community.shuffleCount) times shuffled")
         }
     }

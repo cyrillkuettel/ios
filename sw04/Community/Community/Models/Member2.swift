@@ -1,6 +1,6 @@
 import Foundation
 
-class Member2 {
+actor Member2 {
     
      var capital: Int
 

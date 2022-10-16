@@ -1,7 +1,7 @@
 
 import Foundation
 
-class Community2 : ObservableObject{
+actor Community2 : ObservableObject{
 
     
     @Published var members: [Member]
