@@ -5,13 +5,25 @@ class Community : ObservableObject{
 
 //  let members: [Member] = Array(repeating:  Member(), count: 5)
     
-    @Published var members: [Member] = [Member(), Member(), Member(), Member(), Member()]
-    let Many = 1_000_000
+    @Published var members: [Member]
+    let Many = 10_000
     let Few = 1_000
     
+    @Published var totalSum: Int = 0
     
     @Published var shuffleCount: Int = 0
-
+    
+    init() {
+        self.members = [Member(), Member(), Member(), Member(), Member()]
+        
+        self.totalSum = self.members.map({$0.capital}).reduce(0, +)
+        
+    }
+    
+    public func updateTotal() {
+        // sum of all capitals
+        self.totalSum = self.members.map({$0.capital}).reduce(0, +)
+    }
     
     public func shuffleConcurrentAsync() async {
         for _ in 0...Many {
@@ -29,14 +41,30 @@ class Community : ObservableObject{
             }
             self.shuffleCount += 1
         }
+        self.updateTotal()
     }
    
     public func shuffleConcurrent() {
-        let _ = Thread {
-            for _ in 0...self.Many {
-                self.synchronouslyShuffleMany()
+        Task {
+            await self.taskShuffle()
+        }
+     
+    }
+    func taskShuffle() async {
+        
+        for i in 0..<self.Many {
+            if let lender = self.members.randomElement(){
+                if let borrower = self.members.randomElement() {
+                    lender.lend(borrower: borrower)
+                }
+            }
+            self.shuffleCount += 1
+            if i%1000 == 0 {
+                await Task.yield()
             }
         }
+        self.updateTotal()
+        
     }
     public func synchronouslyShuffleMany() {
         for _ in 0..<self.Many {
@@ -47,5 +75,6 @@ class Community : ObservableObject{
             }
             self.shuffleCount += 1
         }
+        self.updateTotal()
     }
 }

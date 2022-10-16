@@ -17,7 +17,7 @@ struct ContentView: View {
                     Text("Schuffle Many Synchronized")
                 }
                 Button(action: { self.community.shuffleConcurrent() })  {
-                    Text("Shuffle Concurrent (Thread)")
+                    Text("Shuffle Concurrent (Task)")
                 }
                 
                 Button("Shuffle Twice") {
@@ -30,11 +30,11 @@ struct ContentView: View {
                     }
                 }
                 
-                var totalSum = self.community.members.map({$0.capital}).reduce(0, +)
+                let initialSum = community.members.map({$0.capital}).reduce(0, +)
 
-                Text("Initial Total: \(totalSum)")
+                Text("Initial Total: \(initialSum)")
                 Text("\(community.members[0].capital) | \(community.members[1].capital) | \(community.members[2].capital) | \(community.members[3].capital) | \(community.members[4].capital)")
-                Text("Last Total: 50000")
+                Text("Last Total: \(community.totalSum)")
                 Text("\(community.shuffleCount) times shuffled")
             }
             .navigationBarTitle(Text("Shuffle"))
