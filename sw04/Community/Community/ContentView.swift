@@ -6,8 +6,9 @@ struct ContentView: View {
     let community = Community()
     @State var shuffleCount: Int = 0
     // writeonce here todo:
-     let Many = 1_000_000
     
+    let Many = 1_000_000
+    let Few = 1000
     var body: some View {
         
         NavigationView {
@@ -30,9 +31,6 @@ struct ContentView: View {
                     Task(priority: .low) {
                         await self.shuffleConcurrentAsync()
                     }
-                }
-                Button(action: { self.concurrentPerform() })  {
-                    Text("DispatchQueue.concurrentPerform( () -> )")
                 }
                 
                 
@@ -57,7 +55,7 @@ struct ContentView: View {
 
     
     private func shuffleFew() {
-        for _ in 0..<10000 {
+        for _ in 0..<Few {
             if let lender = self.community.members.randomElement(){
                 if let borrower = self.community.members.randomElement() {
                     lender.lend(borrower: borrower)
@@ -88,14 +86,6 @@ struct ContentView: View {
                 synchronouslyShuffleMany()
             }
         }
-    }
-    private func concurrentPerform() {
-        var counter = 0
-
-        DispatchQueue.concurrentPerform(iterations: 2) { _ in
-         counter += 1
-        }
-        print(counter)
     }
 
 }
