@@ -6,7 +6,7 @@ class Community : ObservableObject{
 //  let members: [Member] = Array(repeating:  Member(), count: 5)
     
     @Published var members: [Member]
-    let Many = 10_000
+    let Many = 100_000
     let Few = 1_000
     
     @Published var totalSum: Int = 0
@@ -15,15 +15,16 @@ class Community : ObservableObject{
     
     init() {
         self.members = [Member(), Member(), Member(), Member(), Member()]
-        
         self.totalSum = self.members.map({$0.capital}).reduce(0, +)
-        
     }
     
+    
     public func updateTotal() {
-        // sum of all capitals
-        self.totalSum = self.members.map({$0.capital}).reduce(0, +)
+        DispatchQueue.main.async{
+            self.totalSum = self.members.map({$0.capital}).reduce(0, +)
+        }
     }
+    
     
     public func shuffleConcurrentAsync() async {
         for _ in 0...Many {
@@ -50,6 +51,7 @@ class Community : ObservableObject{
         }
      
     }
+    
     func taskShuffle() async {
         
         for i in 0..<self.Many {
@@ -58,7 +60,9 @@ class Community : ObservableObject{
                     lender.lend(borrower: borrower)
                 }
             }
-            self.shuffleCount += 1
+            DispatchQueue.main.async{ // make sure to publish values from the main thread
+                self.shuffleCount += 1
+            }
             if i%1000 == 0 {
                 await Task.yield()
             }
@@ -66,6 +70,7 @@ class Community : ObservableObject{
         self.updateTotal()
         
     }
+    
     public func synchronouslyShuffleMany() {
         for _ in 0..<self.Many {
             if let lender = self.members.randomElement(){

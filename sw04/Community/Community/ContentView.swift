@@ -5,45 +5,20 @@ struct ContentView: View {
     
     @StateObject var community = Community()
     
-
     var body: some View {
-        
-        NavigationView {
-            List {
-                Button(action: { self.community.shuffleFew() }) {
-                    Text("Shuffle Few")
+        TabView {
+            BasicView()
+                .tabItem{
+                    Label("BasicView",systemImage: "square.and.pencil")
                 }
-                Button(action: { self.community.synchronouslyShuffleMany() })  {
-                    Text("Schuffle Many Synchronized")
+            SafeView()
+                .tabItem{
+                    Label("SafeView", systemImage: "list.dash")
                 }
-                Button(action: { self.community.shuffleConcurrent() })  {
-                    Text("Shuffle Concurrent (Task)")
-                }
-                
-                Button("Shuffle Twice") {
-                    
-                    Task(priority: .high) {
-                        await self.community.shuffleConcurrentAsync()
-                    }
-                    Task(priority: .low) {
-                        await self.community.shuffleConcurrentAsync()
-                    }
-                }
-                
-                let initialSum = community.members.map({$0.capital}).reduce(0, +)
-
-                Text("Initial Total: \(initialSum)")
-                Text("\(community.members[0].capital) | \(community.members[1].capital) | \(community.members[2].capital) | \(community.members[3].capital) | \(community.members[4].capital)")
-                Text("Last Total: \(community.totalSum)")
-                Text("\(community.shuffleCount) times shuffled")
-            }
-            .navigationBarTitle(Text("Shuffle"))
         }
     }
-    
-
-
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
