@@ -1,15 +1,13 @@
 
 import Foundation
 
-class Community : ObservableObject{
+class Community2 : ObservableObject{
 
-//  let members: [Member] = Array(repeating:  Member(), count: 5)
     
     @Published var members: [Member]
     let Many = 100_000
     let Few = 1_000
     
-    // the total sum of all capital
     @Published var totalSum: Int = 0
     
     @Published var shuffleCount: Int = 0
@@ -27,8 +25,10 @@ class Community : ObservableObject{
     }
     
     
-    public func shuffleConcurrent() async {
-        await shuffleMany()
+    public func shuffleConcurrentAsync() async {
+        for _ in 0...Many {
+            synchronouslyShuffleMany()
+        }
     }
 
     
@@ -44,13 +44,14 @@ class Community : ObservableObject{
         self.updateTotal()
     }
    
-    public func shuffleInTask() {
+    public func shuffleConcurrent() {
         Task {
-            await self.shuffleMany()
+            await self.taskShuffle()
         }
+     
     }
     
-    func shuffleMany() async {
+    func taskShuffle() async {
         
         for i in 0..<self.Many {
             if let lender = self.members.randomElement(){
@@ -66,10 +67,11 @@ class Community : ObservableObject{
             }
         }
         self.updateTotal()
+        
     }
     
-    func shuffleManySynchronized() {
-        for i in 0..<self.Many {
+    public func synchronouslyShuffleMany() {
+        for _ in 0..<self.Many {
             if let lender = self.members.randomElement(){
                 if let borrower = self.members.randomElement() {
                     lender.lend(borrower: borrower)
@@ -78,6 +80,5 @@ class Community : ObservableObject{
             self.shuffleCount += 1
         }
         self.updateTotal()
-        
     }
 }

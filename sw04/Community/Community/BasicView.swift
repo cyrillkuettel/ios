@@ -9,23 +9,23 @@ struct BasicView: View {
     var body: some View {
         
         List {
-            Button(action: { self.community.shuffleFew() }) {
+            Button(action: { community.shuffleFew() }) {
                 Text("Shuffle Few")
             }
-            Button(action: { self.community.synchronouslyShuffleMany() })  {
+            Button(action: { community.shuffleManySynchronized() })  {
                 Text("Schuffle Many Synchronized")
             }
-            Button(action: { self.community.shuffleConcurrent() })  {
+            Button(action: { community.shuffleInTask() })  {
                 Text("Shuffle Concurrent (Task)")
             }
             
             Button("Shuffle Twice") {
                 
                 Task(priority: .high) {
-                    await self.community.shuffleConcurrentAsync()
+                    await community.shuffleConcurrent()
                 }
                 Task(priority: .low) {
-                    await self.community.shuffleConcurrentAsync()
+                    await community.shuffleConcurrent()
                 }
             }
             

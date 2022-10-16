@@ -10,16 +10,16 @@ struct SafeView: View {
         
         List {
             
-            Button(action: { self.community.shuffleConcurrent() })  {
+            Button(action: { self.community.shuffleInTask() })  {
                 Text("Shuffle Concurrent (Task)")
             }
             
             Button("Shuffle Twice") {
                 Task(priority: .high) {
-                    await self.community.shuffleConcurrentAsync()
+                    await self.community.shuffleConcurrent()
                 }
                 Task(priority: .low) {
-                    await self.community.shuffleConcurrentAsync()
+                    await self.community.shuffleConcurrent()
                 }
             }
             

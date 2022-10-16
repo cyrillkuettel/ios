@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		DD2A771328FC8BF900EBA6FA /* SafeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2A771228FC8BF900EBA6FA /* SafeView.swift */; };
 		DD2A771528FC8D4200EBA6FA /* BasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2A771428FC8D4200EBA6FA /* BasicView.swift */; };
+		DD2A771728FC918D00EBA6FA /* Community2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2A771628FC918D00EBA6FA /* Community2.swift */; };
+		DD2A771928FC919900EBA6FA /* Member2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2A771828FC919900EBA6FA /* Member2.swift */; };
 		DDB63EF328F49C8300AF553E /* CommunityApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB63EF228F49C8300AF553E /* CommunityApp.swift */; };
 		DDB63EF528F49C8300AF553E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB63EF428F49C8300AF553E /* ContentView.swift */; };
 		DDB63EF728F49C8800AF553E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDB63EF628F49C8800AF553E /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 /* Begin PBXFileReference section */
 		DD2A771228FC8BF900EBA6FA /* SafeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeView.swift; sourceTree = "<group>"; };
 		DD2A771428FC8D4200EBA6FA /* BasicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicView.swift; sourceTree = "<group>"; };
+		DD2A771628FC918D00EBA6FA /* Community2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Community2.swift; sourceTree = "<group>"; };
+		DD2A771828FC919900EBA6FA /* Member2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Member2.swift; sourceTree = "<group>"; };
 		DDB63EEF28F49C8300AF553E /* Community.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Community.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDB63EF228F49C8300AF553E /* CommunityApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityApp.swift; sourceTree = "<group>"; };
 		DDB63EF428F49C8300AF553E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,10 +66,10 @@
 				DDB63F0028F49CA000AF553E /* Models */,
 				DDB63EF228F49C8300AF553E /* CommunityApp.swift */,
 				DDB63EF428F49C8300AF553E /* ContentView.swift */,
+				DD2A771428FC8D4200EBA6FA /* BasicView.swift */,
+				DD2A771228FC8BF900EBA6FA /* SafeView.swift */,
 				DDB63EF628F49C8800AF553E /* Assets.xcassets */,
 				DDB63EF828F49C8800AF553E /* Preview Content */,
-				DD2A771228FC8BF900EBA6FA /* SafeView.swift */,
-				DD2A771428FC8D4200EBA6FA /* BasicView.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -82,7 +86,9 @@
 			isa = PBXGroup;
 			children = (
 				DDB63F0128F49CB100AF553E /* Community.swift */,
+				DD2A771628FC918D00EBA6FA /* Community2.swift */,
 				DDB63F0328F49CB900AF553E /* Member.swift */,
+				DD2A771828FC919900EBA6FA /* Member2.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -159,7 +165,9 @@
 			files = (
 				DDB63F0228F49CB100AF553E /* Community.swift in Sources */,
 				DD2A771328FC8BF900EBA6FA /* SafeView.swift in Sources */,
+				DD2A771928FC919900EBA6FA /* Member2.swift in Sources */,
 				DDB63EF528F49C8300AF553E /* ContentView.swift in Sources */,
+				DD2A771728FC918D00EBA6FA /* Community2.swift in Sources */,
 				DD2A771528FC8D4200EBA6FA /* BasicView.swift in Sources */,
 				DDB63EF328F49C8300AF553E /* CommunityApp.swift in Sources */,
 				DDB63F0428F49CB900AF553E /* Member.swift in Sources */,
