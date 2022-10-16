@@ -5,7 +5,6 @@ struct BasicView: View {
     
     @StateObject var community = Community()
     
-    
     var body: some View {
         
         List {

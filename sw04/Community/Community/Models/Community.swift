@@ -19,7 +19,6 @@ class Community : ObservableObject{
         self.members = [Member(), Member(), Member(), Member(), Member()]
         self.lastTotal = self.members.map({$0.capital}).reduce(0, +)
         self.initialTotal = self.members.map({$0.capital}).reduce(0, +)
-
     }
     
     
@@ -51,6 +50,8 @@ class Community : ObservableObject{
         Task {
             await self.shuffleMany()
         }
+        self.updateTotal()
+
     }
     
     func shuffleMany() async {
@@ -69,6 +70,8 @@ class Community : ObservableObject{
                 await Task.yield()
             }
         }
+        self.updateTotal()
+
     }
     
     func shuffleManySynchronized() {

@@ -1,18 +1,21 @@
 import SwiftUI
 
-
+    
 struct SafeView: View {
     
-    @StateObject var community = Community()
+    @StateObject var community = Community2()
     
     
     var body: some View {
         
         List {
             
-            Button(action: { self.community.shuffleInTask() })  {
-                Text("Shuffle Concurrent (Task)")
+            Button("Shuffle Concurrent (Task)") {
+                Task {
+                    await self.community.shuffleInTask()
+                }
             }
+             
             
             Button("Shuffle Twice") {
                 Task(priority: .high) {
@@ -23,12 +26,15 @@ struct SafeView: View {
                 }
             }
             
-            let initialSum = community.members.map({$0.capital}).reduce(0, +)
             
+            let initialSum = community.members.map({$0.getCapital()}).reduce(0, +)
+
             Text("Initial Total: \(initialSum)")
-            Text("\(community.members[0].capital) | \(community.members[1].capital) | \(community.members[2].capital) | \(community.members[3].capital) | \(community.members[4].capital)")
+            Text("\(community.members[0].getCapital()) | \(community.members[1].getCapital()) | \(community.members[2].getCapital()) | \(community.members[3].getCapital()) | \(community.members[4].getCapital())")
             Text("Last Total: \(community.lastTotal)")
+             
             Text("\(community.shuffleCount) times shuffled")
+
         }
     }
     
