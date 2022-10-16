@@ -5,12 +5,14 @@ class Community : ObservableObject{
 
 //  let members: [Member] = Array(repeating:  Member(), count: 5)
     
-    let members: [Member] = [Member(), Member(), Member(), Member(), Member()]
+    @Published var members: [Member] = [Member(), Member(), Member(), Member(), Member()]
     let Many = 1_000_000
-    let Few = 1000
+    let Few = 1_000
+    
     
     @Published var shuffleCount: Int = 0
 
+    
     public func shuffleConcurrentAsync() async {
         for _ in 0...Many {
             synchronouslyShuffleMany()
@@ -23,18 +25,14 @@ class Community : ObservableObject{
             if let lender = self.members.randomElement(){
                 if let borrower = self.members.randomElement() {
                     lender.lend(borrower: borrower)
-                } else {
-                    print("random Element is nil wtf")
                 }
-            } else {
-                print("random Element is nil wtf")
             }
             self.shuffleCount += 1
         }
     }
    
     public func shuffleConcurrent() {
-        let thread = Thread {
+        let _ = Thread {
             for _ in 0...self.Many {
                 self.synchronouslyShuffleMany()
             }
