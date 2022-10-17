@@ -16,7 +16,5 @@ class Member {
     init() {
         self.capital = 10000
     }
-    
-    
 }
 

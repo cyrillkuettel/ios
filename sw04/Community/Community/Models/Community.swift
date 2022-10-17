@@ -62,9 +62,10 @@ class Community : ObservableObject{
                     lender.lend(borrower: borrower)
                 }
             }
-            DispatchQueue.main.async{ // make sure to publish values from the main thread
+             DispatchQueue.main.async{ // make sure to publish values from the main thread
                 self.shuffleCount += 1
             }
+            
             if i%1000 == 0 {
                 self.updateTotal()
                 await Task.yield()

@@ -11,7 +11,6 @@ actor Community2 : ObservableObject{
     
     @Published @MainActor var initialTotal: Int = 0
     
-    
     @MainActor @Published var shuffleCount: Int = 0
 
     @MainActor
@@ -44,7 +43,6 @@ actor Community2 : ObservableObject{
             }
         }
     }
-    
 }
 
 
