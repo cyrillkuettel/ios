@@ -19,17 +19,11 @@ actor Community2 : ObservableObject{
         Task {
             self.lastTotal = await self.members.asyncMap({ $0.getCapital()}).reduce(0, +)
             self.initialTotal = await self.members.asyncMap({ $0.getCapital()}).reduce(0, +)
-
         }
     }
     
     @MainActor
     public func shuffleConcurrent() async {
-        await shuffleMany()
-    }
-    
-    @MainActor
-    public func shuffleInTask() async {
         await shuffleMany()
     }
     

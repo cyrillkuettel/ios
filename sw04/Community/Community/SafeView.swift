@@ -12,7 +12,7 @@ struct SafeView: View {
             
             Button("Shuffle Concurrent (Task)") {
                 Task {
-                    await self.community.shuffleInTask()
+                    await self.community.shuffleConcurrent()
                 }
             }
              
