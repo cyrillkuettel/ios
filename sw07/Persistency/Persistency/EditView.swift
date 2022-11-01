@@ -35,7 +35,6 @@ struct EditView: View {
     
     var body: some View {
         
-        ZStack {
             VStack {
                 NavigationView {
                     
@@ -108,20 +107,11 @@ struct EditView: View {
                 }
             }
         }
-    }
     
     
     private func getPersonsOfTeam(team: Team) -> Array<Person> {
         
         let personsOfTeam = team.relationship?.allObjects as! [Person]
-        
-//        if personsOfTeam.count != 2 {
-//            fatalError("More than two Persons in relationship found")
-//        }
-        
-        for person in personsOfTeam {
-           print("The Team \(team.name) has member \(person.name)")
-        }
         
         return personsOfTeam
     }
