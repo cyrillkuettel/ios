@@ -18,7 +18,7 @@ struct ContentView: View {
     
     let persistentContainer = PersistenceController.shared.container
 
-    
+    let maxPoints: Int64 = 100
     let someNames = ["Frodo", "Samwise", "Merry", "Pippin", "Oliver", "Bob", "Sarah", "Anita", "Ethan"]
     
     let someTeams =
@@ -57,11 +57,10 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(teams) { team in
-                    // todo: Show all persons that have a relationsship for that team
                     NavigationLink {
-                        Text("Team with name \(team.name!)")
+                        Text("Team \(team.name!)")
                         ForEach(getPersonsOfTeam(team: team)) { person in
-                          Text("Mitglied \(person.name!)")
+                          Text("has Member \(person.name!)")
                        }
                     } label: {
                         Text(team.name!)
@@ -86,19 +85,19 @@ struct ContentView: View {
 
             }
             Button(action: createTeamWith2Person){
-                Text("New Team with two Persons")
+                Text("New Team with two new Persons")
                     .cornerRadius(5)
                     .padding(10)
                     .buttonBorderShape(.roundedRectangle)
             }
-            Button(action: {}){
-                Text("New Person with two Teams")
+            Button(action: createPersonIn2Teams){
+                Text("New Person in two new Teams")
                     .cornerRadius(5)
                     .padding(10)
                     .buttonBorderShape(.roundedRectangle)
             }
-            Button(action: {}){
-                Text("Debug")
+            Button(action: clearAll){
+                Text("Clear All")
                     .cornerRadius(5)
                     .padding(10)
                     .buttonBorderShape(.roundedRectangle)
@@ -110,9 +109,9 @@ struct ContentView: View {
         
         let personsOfTeam = team.relationship?.allObjects as! [Person]
         
-        if personsOfTeam.count != 2 {
-            fatalError("More than two Persons in relationship found")
-        }
+//        if personsOfTeam.count != 2 {
+//            fatalError("More than two Persons in relationship found")
+//        }
         for person in personsOfTeam {
            print("The Team \(team.name) has member \(person.name)")
         }
@@ -125,7 +124,7 @@ struct ContentView: View {
             withAnimation {
                 let newTeam = Team(context: viewContext)
                 newTeam.id = UUID()
-                newTeam.points = Int64.random(in: 0..<11)
+                newTeam.points = Int64.random(in: 0..<maxPoints)
                 newTeam.name = someTeams.randomElement()
                 
                 let newPerson1 = Person(context: viewContext)
@@ -137,41 +136,52 @@ struct ContentView: View {
                 newTeam.addToRelationship(newPerson1)
                 newTeam.addToRelationship(newPerson2)
 
-                do {
-                    try viewContext.save()
-                } catch {
-                    // Replace this implementation with code to handle the error appropriately.
-                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    let nsError = error as NSError
-                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                }
+                tryToSaveOrFail()
             }
         }
+    
+    private func createPersonIn2Teams() {
+        withAnimation {
+            
+            let newTeam = Team(context: viewContext)
+            newTeam.id = UUID()
+            newTeam.points = Int64.random(in: 0..<maxPoints)
+            
+            let newTeam2 = Team(context: viewContext)
+            newTeam2.id = UUID()
+            newTeam2.points = Int64.random(in: 0..<maxPoints)
+            
+            
+            let selectedNames = someTeams.choose(2)
+            newTeam.name = selectedNames[0]
+            newTeam2.name = selectedNames[1]
+            
+            let newPerson1 = Person(context: viewContext)
+            newPerson1.name = someNames.randomElement()
+            newPerson1.addToRelationship(newTeam)
+            newPerson1.addToRelationship(newTeam2)
+
+            tryToSaveOrFail()
+        }
+        
+    }
     
     private func addPerson() {
         withAnimation {
             let newPerson = Person(context: viewContext)
             newPerson.name = someNames.randomElement()
             
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            tryToSaveOrFail()
         }
     }
+    
+
     
     private func deletePersons(offsets: IndexSet) {
         withAnimation {
             offsets.map { persons[$0] }.forEach(viewContext.delete)
             
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            tryToSaveOrFail()
         }
     }
     
@@ -181,27 +191,33 @@ struct ContentView: View {
             let newTeam = Team(context: viewContext)
             newTeam.name = someTeams.randomElement()
             newTeam.id = UUID()
-            newTeam.points = Int64.random(in: 0..<11)
+            newTeam.points = Int64.random(in: 0..<maxPoints)
             
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            tryToSaveOrFail()
         }
     }
     
     private func deleteTeams(offsets: IndexSet) {
         withAnimation {
             offsets.map { teams[$0] }.forEach(viewContext.delete)
-            
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            tryToSaveOrFail()
+        }
+    }
+    
+    func clearAll() {
+        withAnimation {
+            persons.forEach { viewContext.delete($0) }
+            teams.forEach { viewContext.delete($0) }
+            tryToSaveOrFail()
+        }
+    }
+    
+    private func tryToSaveOrFail() {
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
     
@@ -215,6 +231,12 @@ extension DefaultStringInterpolation {
     appendInterpolation(String(describing: optional))
   }
 }
+
+// pick N items from collection
+extension Collection {
+    func choose(_ n: Int) -> ArraySlice<Element> { shuffled().prefix(n) }
+}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
