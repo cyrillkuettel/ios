@@ -19,7 +19,7 @@ struct ContentView: View {
     let persistentContainer = PersistenceController.shared.container
 
     
-    let someNames = ["Frodo", "Samwise", "Merry", "Pippin"]
+    let someNames = ["Frodo", "Samwise", "Merry", "Pippin", "Oliver", "Bob", "Sarah", "Anita", "Ethan"]
     
     let someTeams =
     ["HomeRunnerz",
@@ -52,13 +52,17 @@ struct ContentView: View {
                     EditButton()
                 }
             }
-            .navigationBarTitle("Persons", displayMode: .inline) 
+            .navigationBarTitle("Persons", displayMode: .inline)
         }
         NavigationView {
             List {
                 ForEach(teams) { team in
+                    // todo: Show all persons that have a relationsship for that team
                     NavigationLink {
-                        Text("Team with name \(team.id!)")
+                        Text("Team with name \(team.name!)")
+                        ForEach(getPersonsOfTeam(team: team)) { person in
+                          Text("Mitglied \(person.name!)")
+                       }
                     } label: {
                         Text(team.name!)
                     }
@@ -71,7 +75,7 @@ struct ContentView: View {
                     EditButton()
                 }
             }
-            .navigationBarTitle("Teams", displayMode: .inline) // ⬅️ Important part
+            .navigationBarTitle("Teams", displayMode: .inline)
         }
         VStack{
             Button(action: addPerson){
@@ -94,13 +98,28 @@ struct ContentView: View {
                     .buttonBorderShape(.roundedRectangle)
             }
             Button(action: {}){
-                Text("Clear All")
+                Text("Debug")
                     .cornerRadius(5)
                     .padding(10)
                     .buttonBorderShape(.roundedRectangle)
             }
         }
     }
+    
+    private func getPersonsOfTeam(team: Team) -> Array<Person> {
+        
+        let personsOfTeam = team.relationship?.allObjects as! [Person]
+        
+        if personsOfTeam.count != 2 {
+            fatalError("More than two Persons in relationship found")
+        }
+        for person in personsOfTeam {
+           print("The Team \(team.name) has member \(person.name)")
+        }
+        
+        return personsOfTeam
+    }
+    
     
     private func createTeamWith2Person() {
             withAnimation {
@@ -110,9 +129,10 @@ struct ContentView: View {
                 newTeam.name = someTeams.randomElement()
                 
                 let newPerson1 = Person(context: viewContext)
-                newPerson1.name = "Foo"
+                newPerson1.name = someNames.randomElement()
+                
                 let newPerson2 = Person(context: viewContext)
-                newPerson2.name = "Bar"
+                newPerson2.name = someNames.randomElement()
                 
                 newTeam.addToRelationship(newPerson1)
                 newTeam.addToRelationship(newPerson2)
@@ -189,7 +209,12 @@ struct ContentView: View {
     
 
 }
-
+extension DefaultStringInterpolation {
+// https://stackoverflow.com/questions/42543007/how-to-solve-string-interpolation-produces-a-debug-description-for-an-optional
+  mutating func appendInterpolation<T>(_ optional: T?) {
+    appendInterpolation(String(describing: optional))
+  }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
