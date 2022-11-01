@@ -1,35 +1,29 @@
 import SwiftUI
 import Charts
-
+import CoreData
 
 struct ChartView: View {
     
-    struct ToyShape: Identifiable {
-        var type: String
-        var count: Double
-        var id = UUID()
-    }
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Team.id, ascending: true)],
+        animation: .default)
+    private var teams: FetchedResults<Team>
     
-    var data: [ToyShape] = [
-        .init(type: "Cube", count: 5),
-        .init(type: "Sphere", count: 4),
-        .init(type: "Pyramid", count: 4)
-    ]
+    
     
     var body: some View {
-        Chart {
-            BarMark(
-                x: .value("Shape Type", data[0].type),
-                y: .value("Total Count", data[0].count)
-            )
-            BarMark(
-                 x: .value("Shape Type", data[1].type),
-                 y: .value("Total Count", data[1].count)
-            )
-            BarMark(
-                 x: .value("Shape Type", data[2].type),
-                 y: .value("Total Count", data[2].count)
-            )
-        }
+            HStack(alignment: .center) {
+                Chart(teams) { team in
+                    BarMark(x: .value("Points", team.points),
+                            y: .value("Name", team.name!))
+                    .annotation(position: .overlay, alignment: .center) {
+                        Text("\(team.points, format: .number.precision(.fractionLength(0)))")
+                            .foregroundColor(.white)
+                    }
+                }
+                
+            }
+        
     }
 }
+

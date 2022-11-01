@@ -7,11 +7,11 @@ struct ContentView: View {
         TabView {
             EditView()
                 .tabItem{
-                    Label("EditView",systemImage: "square.and.pencil")
+                    Label("EditView",systemImage: "person.fill.badge.plus")
                 }
             ChartView()
                 .tabItem{
-                    Label("ChartView", systemImage: "list.dash")
+                    Label("ChartView", systemImage: "chart.bar.doc.horizontal")
                 }
         }
     }
