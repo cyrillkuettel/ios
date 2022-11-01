@@ -1,10 +1,3 @@
-//
-//  PersistencyTests.swift
-//  PersistencyTests
-//
-//  Created by HSLU-N0004890 on 01.11.22.
-//
-
 import XCTest
 @testable import Persistency
 

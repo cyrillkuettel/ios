@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Persistency
-//
-//  Created by HSLU-N0004890 on 01.11.22.
-//
-
 import SwiftUI
 import CoreData
 
@@ -12,18 +5,18 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Person.name, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var persons: FetchedResults<Person>
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
+                ForEach(persons) { person in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        Text("Item at \(person.name!)")
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Text(person.name!)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -33,7 +26,7 @@ struct ContentView: View {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
+                    Button(action: addPerson) {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
@@ -42,10 +35,10 @@ struct ContentView: View {
         }
     }
 
-    private func addItem() {
+    private func addPerson() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newItem = Person(context: viewContext)
+            newItem.name = "bar"
 
             do {
                 try viewContext.save()
@@ -60,7 +53,7 @@ struct ContentView: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { persons[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
@@ -74,6 +67,7 @@ struct ContentView: View {
     }
 }
 
+// not used currently
 private let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short

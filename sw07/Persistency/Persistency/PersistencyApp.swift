@@ -1,10 +1,3 @@
-//
-//  PersistencyApp.swift
-//  Persistency
-//
-//  Created by HSLU-N0004890 on 01.11.22.
-//
-
 import SwiftUI
 
 @main
