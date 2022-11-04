@@ -79,7 +79,6 @@ struct EditView: View {
                     .navigationBarTitle("Teams", displayMode: .inline)
                 }
                 
-                
                 Button(action: addPerson){
                     Text("New Person")
                         .cornerRadius(5)
