@@ -2,22 +2,20 @@ import Foundation
 
 class CodableFileWrite<T: Codable> {
 
-    
-    struct Object : Codable {
-        let value: String
-    }
-    
-    static func write(_ content: T, to fileName: String) throws {
+
+    static func write(_ content: T, to fileName: String) throws -> Bool {
 
         
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory,
                                                               in: .userDomainMask).first!
         let fileURL = documentsDirectory.appendingPathComponent(fileName).appendingPathExtension("txt")
         
-        if fileExist(path: fileURL.path) {
-            print("File does already exist. Skipping")
+        if fileExists(path: fileURL.path) {
+            fatalError("File does already exist.")
         } else {
-            let _: Data = try! JSONEncoder().encode(content)
+            let data: Data = try! JSONEncoder().encode(content)
+            let success = FileManager.default.createFile(atPath: fileURL.absoluteString, contents: data)
+            return success
         }
     }
     
@@ -27,7 +25,6 @@ class CodableFileWrite<T: Codable> {
                                                               in: .userDomainMask).first!
         let fileURL = documentsDirectory.appendingPathComponent(fileName).appendingPathExtension("txt")
 
-        
         let data = FileManager.default.contents(atPath: fileName)!
         let o = try! JSONDecoder().decode(T.self, from: data)
         return o
@@ -35,7 +32,7 @@ class CodableFileWrite<T: Codable> {
 
     
     
-    static func fileExist(path: String) -> Bool {
+    static func fileExists(path: String) -> Bool {
         var isDirectory: ObjCBool = false
         let fm = FileManager.default
         return (fm.fileExists(atPath: path, isDirectory: &isDirectory))
