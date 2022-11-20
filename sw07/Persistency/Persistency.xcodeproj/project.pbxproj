@@ -111,8 +111,8 @@
 				DDC3C3192911595300391B19 /* Persistency.xcdatamodeld */,
 				DDC3C3142911595300391B19 /* Preview Content */,
 				DD63D7E22911CCBE009193AF /* EditView.swift */,
-				DD63D7E42911CD43009193AF /* ChartView.swift */,
 				DD63D7E62911D749009193AF /* CodableFileWrite.swift */,
+				DD63D7E42911CD43009193AF /* ChartView.swift */,
 			);
 			path = Persistency;
 			sourceTree = "<group>";
