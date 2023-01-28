@@ -73,3 +73,16 @@ Unterart lazy: Das wirt erst beim ersten Zugriff ausgewertet und zugewiesen.
 
 - willSet
 - didSet
+
+# Type Properties (static)
+
+Was in vielen anderen Sprachen (Java, Kotlin, C# ) als "static property" 
+bezeichnet wird, heisst bei Swift "Type Properties"
+
+
+
+# Closure
+
+" A closure is an inner function, that remembers, and has access to, variables
+in the local scope where it was created. (Even after the outer function has 
+finished executing.)" 
