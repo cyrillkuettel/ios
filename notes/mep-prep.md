@@ -91,7 +91,7 @@ finished executing.)"
 
 ## Wieso also sind Views Structs?
 
-- Performance: Für kleine Datenmengen sind Structs effizienter.
+- Performance: Für kleine Datenmengen sind Structs performanter.
 - Korrektheit: Eine Klasse mit let deklarierte Klasse, deren properties sind
 nicht immutable. Eine let-Variabel mit einem Struct lässt keine unerwünschten  
 Veränderungen zu, bei einer let-Variabel von einer Klassen-Instanz ist nur die 
@@ -100,6 +100,7 @@ Referenz direkt geschützt
 und ist nicht versucht, in (imperativen) Änderungen von bestehenden Objekten zu 
 denken.
 
+j
 ### View Modifiers: Jeder View Modifier erstellt eine neue View.
 ```swift
 Text("Hello, World!")
@@ -201,4 +202,6 @@ View Controller sind das Fundament der internen Struktur einer iOS-App.
     - UIViewController: Üblicherweise eine Bildschirmseite (UIKit)
     
 
-
+# todo:
+- Data flow
+- Embedding SwiftUI in UIkit 
